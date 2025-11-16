@@ -3,5 +3,5 @@ ipdb
 scipy
 tqdm
 sentence_transformers
-openai
+openai==2.8.0
 backoff
