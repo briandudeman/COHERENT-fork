@@ -86,6 +86,7 @@ class ArenaMP(object):
                         else:
                             raise ValueError(f"{lm_id} not available!")
                     except OpenAIError as e:
+                        print("i found the error")
                         print(e)
                         raise e
 
