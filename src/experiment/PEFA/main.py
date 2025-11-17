@@ -5,12 +5,18 @@ from LLM_oracle import ArenaMP
 from get_env_info import Get_env_info
 import traceback
 import argparse
+import datetime
+import os
+
+runtime = datetime.datetime.now().time()
 
 args = get_args()
 
 def write_log_to_file(log_message, file_name=f'./log/{args.env}.txt'):
-        with open(file_name, 'a') as file:  
-            file.write(log_message + '\n')  
+    os.makedirs(f'./log/run_logs/{runtime}', exist_ok=True)
+    with open(f'./log/run_logs/{runtime}/{file_name}.txt', 'a') as file:  
+        file.write(log_message + '\n')
+    print(args.lm_id)
 
 
 if __name__ == '__main__':

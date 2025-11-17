@@ -15,7 +15,7 @@ def get_args():
                     help='Specifies the ID of the task to run. Enter at least one parameter.')
     parser.add_argument('--source', default='openai', choices=['huggingface', 'openai'], 
                     help='openai API or load huggingface models')
-    parser.add_argument('--lm_id', default='gpt-3.5-turbo',
+    parser.add_argument('--lm_id', default='gpt-4o-mini',
                     help='name for openai engine or huggingface model name/path')
     parser.add_argument('--debug', action='store_true', default=False,
                     help='debugging mode')

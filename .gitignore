@@ -25,3 +25,6 @@ docs/apidoc
 
 # vscode
 .vscode/
+
+
+src/experiment/PEFA/log/run_logs/

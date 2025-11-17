@@ -4,6 +4,7 @@ import numpy as np
 from tqdm import tqdm
 import time
 import json
+import openai
 from openai import OpenAIError,OpenAI
 import backoff
 import traceback
@@ -77,7 +78,7 @@ class ArenaMP(object):
                                     f.write('\n')
                             generated_samples = [response.choices[i].message.content for i in
                                                     range(sampling_params['n'])]
-                            if 'gpt-4-0125-preview' in self.lm_id:
+                            if 'gpt-4-0125-preview' or 'gpt-4o-mini' in self.lm_id:
                                 usage = response.usage.prompt_tokens * 0.01 / 1000 + response.usage.completion_tokens * 0.03 / 1000
                             elif 'gpt-3.5-turbo-1106' in self.lm_id:
                                 usage = response.usage.prompt_tokens * 0.0015 / 1000 + response.usage.completion_tokens * 0.002 / 1000
