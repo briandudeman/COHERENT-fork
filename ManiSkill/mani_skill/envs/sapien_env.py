@@ -209,7 +209,7 @@ class BaseEnv(gym.Env):
         parallel_in_single_scene: bool = False,
         enhanced_determinism: bool = False,
     ):
-        print(num_envs)
+        #print(num_envs)
         self._enhanced_determinism = enhanced_determinism
 
         self.num_envs = num_envs
@@ -390,7 +390,6 @@ class BaseEnv(gym.Env):
     def _default_sim_config(self):
         return SimConfig()
     def _load_agent(self, options: dict, initial_agent_poses: Optional[Union[sapien.Pose, Pose]] = None, build_separate: bool = False):
-        print("agents getting loaded with baseenv")
         
         """
         loads the agent/controllable articulations into the environment. The default function provides a convenient way to setup the agent/robot by a robot_uid
@@ -424,6 +423,13 @@ class BaseEnv(gym.Env):
                             f"Agent {robot_uid} not found in the dict of registered agents. If the id is not a typo then make sure to apply the @register_agent() decorator."
                         )
                     agent_cls = REGISTERED_AGENTS[robot_uid].agent_cls
+                '''print("agent_cls ", agent_cls)
+                print("scene ", self.scene)
+                print("control freq ", self._control_freq)
+                print("control mode ", self._control_mode)
+                print("agent idx ", i if len(robot_uids) > 1 else None)
+                print("initial pose ", initial_agent_poses[i] if initial_agent_poses is not None else None)
+                print("build seperate ", build_separate)'''
                 agent: BaseAgent = agent_cls(
                     self.scene,
                     self._control_freq,
@@ -854,7 +860,6 @@ class BaseEnv(gym.Env):
     # Reset
     # -------------------------------------------------------------------------- #
     def reset(self, seed: Union[None, int, list[int]] = None, options: Union[None, dict] = None):
-        print("base env reseting")
         """Reset the ManiSkill environment with given seed(s) and options. Typically seed is either None (for unseeded reset) or an int (seeded reset).
         For GPU parallelized environments you can also pass a list of seeds for each parallel environment to seed each one separately.
 
@@ -894,7 +899,6 @@ class BaseEnv(gym.Env):
         if options is None:
             options = dict()
         reconfigure = options.get("reconfigure", False)
-        print("reconfigure: ", reconfigure)
         reconfigure = reconfigure or (
             self._reconfig_counter == 0 and self.reconfiguration_freq != 0
         )

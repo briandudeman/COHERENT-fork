@@ -224,6 +224,7 @@ class BaseAgent:
             self.robot = Articulation.merge(
                 arts, name=f"{self.uid}-agent-{self._agent_idx}", merge_links=True
             )
+            print("trying to add, build seperate ", self.robot)
             self.scene.add_to_state_dict_registry(self.robot)
         else:
             self.robot = build_articulation()

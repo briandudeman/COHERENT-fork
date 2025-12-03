@@ -80,7 +80,7 @@ class TwoRobotStackCube(BaseEnv):
 
     def _load_agent(self, options: dict):
         super()._load_agent(
-            options, [sapien.Pose(p=[0, -1, 0]), sapien.Pose(p=[0, 1, 0])]
+            options, [sapien.Pose(p=[0, 0, 0]), sapien.Pose(p=[0, 1, 0])]
         )
 
     def _load_scene(self, options: dict):
@@ -116,6 +116,7 @@ class TwoRobotStackCube(BaseEnv):
     def _initialize_episode(self, env_idx: torch.Tensor, options: dict):
         with torch.device(self.device):
             b = len(env_idx)
+            print("table scene ", self.table_scene)
             self.table_scene.initialize(env_idx)
             # the table scene initializes two robots. the first one self.agents[0] is on the left and the second one is on the right
 
